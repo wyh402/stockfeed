@@ -1,6 +1,9 @@
 import "./StocksChart.css";
+import Chart from "./Chart/Chart"
 
 function StocksChart(props) {
+  const isYearInvalid = props.selectedYear === "All";
+
   const chartDataPoints = [
     { label: "Jan", value: 0 },
     { label: "Feb", value: 0 },
@@ -16,7 +19,14 @@ function StocksChart(props) {
     { label: "Dec", value: 0 },
   ];
 
-  return <div></div>;
+  for (const stock of props.stocks) {
+    const stockMonth = stock.date.getMonth();
+    chartDataPoints[stockMonth].value += stock.amount;
+  }
+
+  return <div className="chart-container">
+    {!isYearInvalid && <Chart dataPoints={chartDataPoints}/>}
+  </div>
 }
 
 export default StocksChart;

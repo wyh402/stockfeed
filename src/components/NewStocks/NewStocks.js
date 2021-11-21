@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StocksForm from "./StocksForm";
 import "./NewStocks.css";
 
+
 function NewStocks(props) {
   const [isEditing, setIsEditing] = useState();
   const [industry, setIndustry] = useState("Agriculture");

@@ -6,6 +6,8 @@ function StocksForm(props) {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredIndustry, setEnteredIndustry] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const isValidInput =
+    enteredTitle && enteredAmount && enteredIndustry && enteredDate;
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -15,18 +17,18 @@ function StocksForm(props) {
     setEnteredAmount(event.target.value);
   };
 
-  const industryChangeHandler = (event) => {
-    setEnteredIndustry(event.target.value);
-  };
-
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
+    if (!isValidInput) {
+      props.onCancel();
+      return;
+    }
     const stockData = {
-      title: +enteredTitle,
+      title: enteredTitle,
       amount: enteredAmount,
       industry: enteredIndustry,
       date: new Date(enteredDate), //parse date string into object
@@ -39,27 +41,40 @@ function StocksForm(props) {
     setEnteredDate("");
   };
 
-  const dropDownChangeHandler = (event) => {
+  const industryChangeHandler = (event) => {
+    setEnteredIndustry(event.target.value);
     props.onChangeFilter(event.target.value);
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className="form-container">
+    <div className="form-container">
+      <form onSubmit={submitHandler}>
         <div className="form-element">
-          <label>Company Name</label>
-          <input type="text" />
+          <label className="form-label">Company Name</label>
+          <input
+            className="forms-input"
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="form-element">
-          <label>Amount</label>
-          <input type="text" />
+          <label className="form-label">Amount</label>
+          <input
+            className="forms-input"
+            type="text"
+            min="0.01"
+            step="0.01"
+            value={enteredAmount}
+            onChange={amountChangeHandler}
+          />
         </div>
         <div className="form-element">
-          <label>Industry</label>
+          <label className="form-label">Industry</label>
           <select
-            className="industry-select"
+            className="forms-input"
             value={props.setIndustry}
-            onChange={dropDownChangeHandler}
+            onChange={industryChangeHandler}
           >
             <option value="Agriculture">Agriculture</option>
             <option value="Biology">Biology</option>
@@ -70,15 +85,28 @@ function StocksForm(props) {
           </select>
         </div>
         <div className="form-element">
-          <label>Date</label>
-          <input type="date" />
+          <label className="form-label">Date</label>
+          <input
+            className="forms-input"
+            type="date"
+            value={enteredDate}
+            onChange={dateChangeHandler}
+          />
         </div>
-      </div>
-      <div className="new-expense__actions">
-        <button type="button" onClick={props.onCancel}>Cancel</button>
-        <button type="submit">Done</button>
-      </div>
-    </form>
+        <div className="form-buttons-container">
+          <button
+            type="button"
+            onClick={props.onCancel}
+            className="form-button form-button-cancel"
+          >
+            Cancel
+          </button>
+          <button type="submit" className="form-button">
+            Done
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

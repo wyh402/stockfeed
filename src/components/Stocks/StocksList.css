@@ -9,6 +9,7 @@
   }
   
   .stocks-list__fallback {
+    margin-top: 60px;
     color: #13110d;
     text-align: center;
     font-size: 20px;

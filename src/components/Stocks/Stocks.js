@@ -23,7 +23,7 @@ function Stocks(props) {
     return (
       <div className="stocks-container">
           <StocksFilter selected={filteredYear} onChangeFilter={filterChangeHandler}></StocksFilter>
-          <StocksChart stocks={filteredStocks}></StocksChart>
+          <StocksChart stocks={filteredStocks} selectedYear={filteredYear}></StocksChart>
           <StocksList items={filteredStocks}></StocksList>
       </div>
     );
