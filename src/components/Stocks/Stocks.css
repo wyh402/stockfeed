@@ -1,0 +1,10 @@
+.stocks-container{
+    margin-top: 500px;
+    padding: 1rem;
+    border: 3px solid #92B4F4;
+    border-radius: 20px;
+    margin: 2rem auto;
+    height: auto;
+    min-height: 100px; /*comment this out when done with other elements*/
+    width:  100%;
+}

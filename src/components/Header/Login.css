@@ -1,0 +1,29 @@
+.login-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.login-button {
+    font: inherit;
+    font-size: 17px;
+    margin-top: 50px;
+    color: white;
+    background-color: #0A369D;
+    border: 1px solid #0A369D;
+    padding: 1.1rem 2.8rem;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.login-button:focus {
+    outline: none;
+}
+
+.login-button:hover,
+.login-button:active {
+  background: #0c0a9d;
+  border-color: #0c0a9d;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}
+
